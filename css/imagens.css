@@ -1,0 +1,35 @@
+
+.imagens{
+
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+
+}
+
+#image-container > div{
+    display: grid;
+    grid-template-columns: repeat(50px); /* Ajuste de colunas para a largura */
+   
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: pink;
+    overflow: hidden; /* Evitar que a imagem saia do contêiner */
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;  /* Ou use 'contain' se preferir a imagem inteira visível */
+    transform: scale(1);  /* Aplica o zoom na imagem */
+
+}
+

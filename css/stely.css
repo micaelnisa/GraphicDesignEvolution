@@ -1,95 +1,144 @@
-
-
-
 * {
     margin: 0;
     padding: 0;
     font-family: 'Satoshi-Regular', Impact;
     color: white;
 }
+
 body {
     background-color: #0D0D0D;
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;     /* Centraliza verticalmente */
-    min-height: 100vh;       /* Garante que ocupe a altura total da viewport */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    min-height: 100vh;
+    /* Garante que ocupe a altura total da viewport */
 }
+
 main {
     width: 90vw;
     height: 85vh;
-   
+
     display: flex;
     flex-direction: column;
     /*padding: 20px; 
      background-color: #1A1A1A;          
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
-   
+
 }
+
 h1 {
     margin-left: 10px;
     font-family: 'Satoshi-Bold', Impact;
-   
+
 }
-nav{
+
+nav {
     width: 100%;
 }
-nav > ul{
-    margin-top:20px;
-    
+
+nav>ul {
+    margin-top: 20px;
+
     list-style: none;
     display: flex;
-    flex-direction: row; /* Coloca os elementos em linha */
-   
-    align-items: center; /* Centraliza verticalmente, se necessário */
+    flex-direction: row;
+    /* Coloca os elementos em linha */
+
+    align-items: center;
+    /* Centraliza verticalmente, se necessário */
     justify-content: space-between;
     white-space: nowrap;
 }
 
-.epoca1{
-
+.epocas {
     width: 50vw;
     display: flex;
-    flex-direction: row; /* Coloca os elementos em linha */
+    flex-direction: row;
+    /* Coloca os elementos em linha */
     margin: 0 auto;
-  
+
 }
 
-.epoca1>ul{
-  
-    align-items: center; /* Centraliza verticalmente, se necessário */
+.epocas> ul {
+
+    align-items: center;
+    /* Centraliza verticalmente, se necessário */
     justify-content: space-between;
     white-space: nowrap;
+ background-color: white;
+    color: black;
+    border-radius: 15px;
 }
+
 
 input[type="checkbox"] {
     display: none;
 }
 
-span {
+.seletor span,
+.epocas span {
     padding: 1px 8px;
     border: 1.5px solid transparent;
     color: white;
     cursor: pointer;
-  
+
     border-radius: 100px;
 }
 
-input[type="checkbox"]:checked + label span {
+.epocas span {
+    border: none;
+    color: black;
+
+}
+
+.seletor input[type="checkbox"]:checked+label span {
     background-color: white;
     color: black;
     border-color: white;
-    transition:  0.3s ease; /* Aplica a transição ao hover */
+    transition: 0.3s ease;
+    /* Aplica a transição ao hover */
+
+}
+
+.epocas input[type="checkbox"]:checked+label span {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-color: white;
+    border: 0px;
+    transition: 0.3s ease;
+    /* Aplica a transição ao hover */
 
 }
 
 /* Para hover */
-span:hover {
+.seletor span:hover,
+.epocas span:hover {
     border-color: white;
-    transition: border-color 0.3s ease; /* Aplica a transição ao hover */
+    transition: border-color 0.3s ease;
+    /* Aplica a transição ao hover */
 }
 
-.imagens{
-margin-top: 10px;
-background-color: red;
-height: 65vh;
+.epocas span:hover {
+    background-color: rgb(158, 158, 158);
+    transition: 0.3s ease;
+    /* Aplica a transição ao hover */
 }
+
+
+.imagens {
+    margin-top: 10px;
+   
+    height: 65vh;
+}
+
+.epoca1,
+.epoca2,
+.epoca3 {
+
+    display: none;
+
+}
+
+
