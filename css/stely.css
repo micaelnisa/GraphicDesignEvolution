@@ -53,7 +53,7 @@ nav>ul {
 }
 
 .epocas {
-    width: 50vw;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     /* Coloca os elementos em linha */
@@ -131,6 +131,7 @@ input[type="checkbox"] {
     margin-top: 10px;
    
     height: 65vh;
+
 }
 
 .epoca1,
