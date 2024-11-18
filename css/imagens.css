@@ -5,8 +5,27 @@
     
  
 }
+.imagens {
+    width: 100%;
+margin-top: 10px;
+display: grid;
+row-gap: 0;
+grid-template-columns: repeat(auto-fill, 45px); 
+column-gap: 0;
+margin-top: 45px;
 
-.imagens>div {
+
+}
+.imagens img {
+  width: 45px;
+  height: 45px;
+}
+
+.image-cell{
+    width: 45px;
+    height: 45px;  
+}
+/*.imagens>div {
     width: 100%;
     margin-top: 10px;
     display: grid;
