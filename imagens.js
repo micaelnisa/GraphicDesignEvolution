@@ -1,27 +1,52 @@
 
 
+// Parâmetros
+const gridSize = 100; // Grid 10x10
+const images = [...Array(100)].map(() => "./images/crocs.png"); // Array de imagens
 
-document.querySelectorAll('.grids-imagens > div').forEach(div => {
-    // Define tamanhos aleatórios (ou outro critério)
-    const sizes = ['size-1x1', 'size-2x2', 'size-2x1', 'size-1x2'];
-    const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
-    
-    // Adiciona a classe de tamanho ao div
-    div.classList.add(randomSize);
-});
+// Função para calcular a probabilidade com base na distância ao centro
+function calculateProbability(x, y, centerX, centerY) {
+  const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+  return 1 - distance / Math.max(centerX, centerY); // Maior probabilidade no centro
+}
+
+// Preenchimento da grid
+function populateGrid() {
+  const gridContainer = document.querySelector(".grid-container");
+  const centerX = (gridSize - 1) / 2;
+  const centerY = (gridSize - 1) / 2;
+  let imageIndex = 0;
+
+  for (let y = 0; y < gridSize; y++) {
+    for (let x = 0; x < gridSize; x++) {
+      const probability = calculateProbability(x, y, centerX, centerY);
+      const randomValue = Math.random();
+      
+      const gridItem = document.createElement("div");
+      gridItem.classList.add("grid-item");
+
+      if (randomValue < probability && imageIndex < images.length) {
+        const img = document.createElement("img");
+        img.src = images[imageIndex];
+        img.alt = `Imagem ${imageIndex + 1}`;
+        gridItem.appendChild(img);
+        imageIndex++;
+      }
+
+      gridContainer.appendChild(gridItem);
+    }
+  }
+}
+
+populateGrid();
 
 
 
 
+/*
+cena da grid 
 
-
-
-
-
-
-
-
-/*document.addEventListener("DOMContentLoaded",function() {
+document.addEventListener("DOMContentLoaded",function() {
     const container = document.getElementById('image-container');
     const images = container.querySelectorAll('.image');
     
