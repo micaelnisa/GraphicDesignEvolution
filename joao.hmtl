@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'>
+function init() {
+    var canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
+    images = new Array();
+
+    drawImage();
+}
+function drawImage() {
+    for (var i = 0; i < 9; i++) {
+        for (var j = 0; j < 9; j++) {
+            var index = i * 9 + j;
+            images[index] = new Image();
+            images[index].src = 'https://swarnimtouch.com/27hdfc/public/assets/front/selfie/selfie-img-Dr-brijesh-3-1631611379-14-09-2021.jpg';
+            images[index].onload = dumb(context, images[index], index, i, j);
+        }
+    }
+}
+function downloadIMage() {
+    var link = document.createElement("a");
+      link.download = "image.png";
+      canvas.toBlob(function(blob){
+        link.href = URL.createObjectURL(blob);
+        console.log(blob);
+        console.log(link.href); // this line should be here
+      },'image/png');
+      link.click();
+}
+
+
+window.onload = init;
+function dumb(ctx,img,index,i,j){
+    return function () {
+        ctx.drawImage(img, i * 200, j * 200, 200, 200);
+    };
+}
+</script>
+</head>
+<body>
+  <canvas id="canvas" width="600px" height="600px" style="border: solid;"></canvas>
+  <button onclick="drawImage();">Display Image</button>
+  <a id="download" download="Collage.png">
+        <button type="button" onclick="downloadIMage()" >Download</button>
+    </a>
+
+    <img src="" id="imageResult" width="100px" height="100px"  crossorigin="anonymous">
+</body>
+</html>

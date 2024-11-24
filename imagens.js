@@ -1,5 +1,29 @@
 
-const container = document.getElementById('image-container');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const container = document.getElementById('image-container');
 const rows = 10; // Define o número de linhas
 const cols = 30; // Define o número de colunas
 const totalCells = rows * cols;
