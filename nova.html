@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A história do Design Gráfico</title>
+    <link rel="stylesheet" href="/novo.css">
+
+    <style></style>
+</head>
+<body>
+    <div class="grid" id="grid">
+
+
+
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="close" id="closeModal">&times;</span>
+        <img id="modalImage" src="" alt="Imagem Ampliada">
+    </div>
+
+    <script>
+       const grid = document.getElementById('grid');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+
+        const folderPath = './meggs/'; // Caminho para a pasta de imagens
+        const totalImages = 1561; // Total de imagens
+        const extensions = ['jpg', 'png']; // Extensões suportadas
+
+        async function loadImages() {
+            for (let i = 1; i <= totalImages; i++) {
+                let found = false;
+
+                for (const extension of extensions) {
+                    if (!found) {
+                        const img = new Image();
+                        img.src = `${folderPath}${i}.${extension}`;
+                        img.alt = `Imagem ${i}`;
+
+                        const loadPromise = new Promise((resolve, reject) => {
+                            img.onload = () => resolve(img);
+                            img.onerror = () => resolve(null);
+                        });
+
+                        const result = await loadPromise;
+                        if (result) {
+                            const cell = document.createElement('div'); // Célula
+                            cell.className = 'cell';
+                            cell.appendChild(img);
+                            grid.appendChild(cell);
+
+                            // Evento de clique na imagem
+                            img.addEventListener('click', () => {
+                                modal.style.display = 'flex';
+                                modalImage.src = img.src; // Definir a imagem na modal
+                            });
+
+                            found = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Fechar o pop-up ao clicar no botão de fechar
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Fechar o pop-up clicando fora da imagem
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        loadImages();
+    </script>
+</body>
+</html>
