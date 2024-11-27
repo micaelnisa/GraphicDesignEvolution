@@ -63,8 +63,6 @@ transform: scale(5);
 }
 
 
-
-
 .modal {
     display: none; /* Inicialmente escondido */
     position: fixed;
@@ -110,8 +108,8 @@ transform: scale(5);
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 5px;
-    left: 5px;
+    bottom: 5px;
+    right: 5px;
     cursor:move;
     
     user-select: none;
