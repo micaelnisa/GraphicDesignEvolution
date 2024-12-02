@@ -1,29 +1,43 @@
-
-.imagens {
-    margin-top: 10px;
-    width: 91vw;
-    
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-flow: dense;
  
 }
-.imagens {
+
+.cell {
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.cell img {
     width: 100%;
-margin-top: 10px;
-display: grid;
-row-gap: 0;
-grid-template-columns: repeat(auto-fill, 20px); 
-column-gap: 0;
-margin-top: 20px;
-
-}
-.imagens img {
-    width: 20px;
-    height: 20px; 
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.image-cell{
-    width: 20px;
-    height: 20px;  
+.cell-expanded {
+    grid-column: span 2;
+    grid-row: span 2;
+    z-index: 10;
 }
+
+.cell-expanded img {
+    height: 400px; /* Altura maior para imagem expandida */
+    object-fit: contain;
+}
+
+/* Efeito nas outras células quando uma está expandida */
+.cell:not(.cell-expanded) {
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+
+
+
 /*.imagens>div {
     width: 100%;
     margin-top: 10px;

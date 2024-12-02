@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Satoshi-Regular', Impact;
+    
+}
+
+body{
+    background-color: black;
+    overflow: hidden; /* Remove o scroll */}
+
+body {
+    margin: 0;
+    display: block;
+
+    /*
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;*/
+}
+
+.selectedGrid {
+  
+}
+
+.selectedGrid img {
+   
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagens Selecionadas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.10.6/html-to-image.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .selectedGrid {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 5px;
+            padding: 10px;
+        }
+        .selectedGrid img {
+            flex: 1 1 auto;
+            height: 150px;
+            object-fit: cover;
+        }
+        .cell {
+            flex: 0 0 auto;
+            border: 1px solid #ddd;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Imagens Selecionadas</h1>
+    <div class="selectedGrid" id="selectedGrid"></div>
+    <button onclick="capturePage()">Capture Page</button>
+  
+     
+   
+
+    <script>
+        // Obter IDs das imagens selecionadas a partir do URL
+        const params = new URLSearchParams(window.location.search);
+        const images = params.get('images')?.split(',') || [];
+        const folderPath = './meggslow/'; // Caminho para as imagens
+
+        const grid = document.getElementById('selectedGrid');
+        images.forEach((id) => {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            const img = document.createElement('img');
+            img.src = `${folderPath}${id}.jpg`;
+            img.alt = `Imagem ${id}`;
+            cell.appendChild(img);
+            grid.appendChild(cell);
+        });
+        function capturePage() {
+            htmlToImage.toPng(document.body)
+                .then(function(dataUrl) {
+                    var link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = 'page-screenshot.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                })
+                .catch(function(error) {
+                    console.error('Oops, something went wrong!', error);
+                });
+        }
+    </script>
+</body>
+</html>
