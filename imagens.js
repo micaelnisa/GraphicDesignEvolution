@@ -42,6 +42,7 @@ async function loadImages() {
     }
 }
 
+
 document.getElementById('showSelected').addEventListener('click', () => {
     // Atualizar o conjunto de imagens selecionadas
     document.querySelectorAll('.cell').forEach((cell) => {
@@ -62,10 +63,11 @@ document.getElementById('showSelected').addEventListener('click', () => {
     // Redirecionar para a nova página com os IDs no URL
     if (selectedArray.length > 0) {
         const queryString = `images=${selectedArray.join(',')}`;
-        window.location.href = `selected.html?${queryString}`;
+        window.open(`selected.html?${queryString}`, '_blank');
     } else {
-        alert('Nenhuma imagem foi selecionada!');
+        alert('Não podes ver o mapa se não selecionaste nenhuma imagem');
     }
 });
+
 
 loadImages();
