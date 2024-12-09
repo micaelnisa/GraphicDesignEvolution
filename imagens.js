@@ -37,6 +37,9 @@ async function loadImages() {
                             selectedImages.delete(imageId); // Remover da seleção
                             removeThumbnail(imageId); // Remover miniatura
                         }
+
+                        // Atualizar visibilidade da div draggable
+                        updateDraggableVisibility();
                     });
 
                     found = true;
@@ -47,7 +50,7 @@ async function loadImages() {
         // Atualiza a tela de loading para refletir o progresso
         loadedImages++;
         const progress = Math.round((loadedImages / totalImages) * 100);
-        document.querySelector('.loadingText h3').textContent = `A carregar conteúdos ${progress}%`;
+        document.querySelector('.loadingText h3').textContent = `A carregar conteúdos... ${progress}%`;
     }
 
     // Esconder a tela de carregamento com transição suave quando as imagens estiverem todas carregadas
@@ -69,11 +72,6 @@ function addThumbnail(img) {
     thumbnail.className = 'thumbnail';
     thumbnail.dataset.id = img.dataset.id;
 
-    // Ao clicar na miniatura, pode expandir a imagem de volta ou fazer outra ação
-    thumbnail.addEventListener('click', () => {
-        alert(`Imagem ${img.dataset.id} foi clicada para expandir.`);
-    });
-
     thumbnailContainer.appendChild(thumbnail);
 }
 
@@ -83,6 +81,17 @@ function removeThumbnail(imageId) {
     const thumbnail = thumbnailContainer.querySelector(`img[data-id="${imageId}"]`);
     if (thumbnail) {
         thumbnailContainer.removeChild(thumbnail);
+    }
+}
+
+// Função para atualizar a visibilidade da div draggable
+function updateDraggableVisibility() {
+    const draggableDiv = document.getElementById('draggable'); // ID da div draggable
+    const expandedCells = document.querySelectorAll('.cell.expanded');
+    if (expandedCells.length > 0) {
+        draggableDiv.style.display = 'flex'; // Mostrar a div
+    } else {
+        draggableDiv.style.display = 'none'; // Ocultar a div
     }
 }
 
@@ -99,12 +108,29 @@ document.getElementById('showSelected').addEventListener('click', () => {
     const selectedArray = Array.from(selectedImages);
 
     // Reverter todas as células ao estado normal
-    document.querySelectorAll('.expanded').forEach((cell) => {
+    document.querySelectorAll('.cell.expanded').forEach((cell) => {
         cell.classList.remove('expanded');
     });
 
+    // Limpar o conteúdo da div draggable
+    const thumbnailContainer = document.getElementById('thumbnailContainer');
+    thumbnailContainer.innerHTML = ''; // Remove todas as miniaturas da div draggable
+
+    // Ocultar a div draggable
+    const draggableDiv = document.getElementById('draggable');
+    draggableDiv.style.display = 'none';
+
+    // Limpar o conjunto de imagens selecionadas
+    selectedImages.clear();
+
     // Redirecionar para a nova página com os IDs no URL
-   
+    if (selectedArray.length > 0) {
+        const queryString = `images=${selectedArray.join(',')}`;
+        window.open(`selected.html?${queryString}`, '_blank');
+    } else {
+        alert('Não podes ver o mapa se não selecionaste nenhuma imagem');
+    }
 });
 
 loadImages();
+

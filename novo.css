@@ -36,22 +36,16 @@ body {
 .grid {
     display: grid;
     grid-template-rows: repeat(auto-fill, 30px);
-    /* Cada linha terá 150px de altura */
     grid-template-columns: repeat(auto-fill, 30px);
-    /* Cada coluna também terá 150px */
     gap: 0;
-    /* Remove espaços entre as células */
     grid-auto-flow: column;
-    /* O fluxo será horizontal */
     width: max-content;
-    /* Largura total é a soma de todas as colunas */
     height: 100vh;
-    /* A altura total será 100% da viewport */
 }
 
 
 .grid .cell {
-    position: relative;
+  
     overflow: hidden;
     /* Garante que imagens não ultrapassam os limites */
     aspect-ratio: 1 / 1;
@@ -68,6 +62,8 @@ body {
     aspect-ratio: 1 / 1;
     /* Mantém proporção quadrada */
     transition: transform 0.3s ease-in-out;
+    user-select: none;
+    /* Impede a seleção de texto */
 }
 
 
@@ -83,9 +79,7 @@ body {
 /* Efeito de zoom controlado e cropping */
 .grid .cell:hover img {
     transform: scale(1.5);
-    /* Aumenta o zoom */
-    object-position: center;
-    /* Ajusta o corte da imagem */
+  
 }
 
 .grid .cell.expanded {
@@ -94,12 +88,18 @@ body {
     grid-row: span 7;
     /* Expande verticalmente */
     z-index: 10;
+  
     /* Coloca por cima de outras células */
+    object-fit: contain;
+    
+  
+
 }
 
 .grid .cell.expanded img {
+
     object-fit: contain;
-    transform: scale(1);
+    transform: scale(1.5);
     width: 100%;
     height: 100%;
 }
@@ -149,11 +149,11 @@ body {
     z-index: 999;
     flex-direction: row;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.9);
     border-radius: 10px;
     color: white;
     width: fit-content;
-    height: 30px;
+    height: fit-content;
 
 }
 
@@ -161,31 +161,26 @@ body {
 
     display: grid;
     grid-auto-flow: column;
-    height: 35px;
     margin: auto;
     width: 100px;
     grid-template-columns: repeat(minmax(5px, 1fr));
     grid-template-rows: repeat(minmax(5px, 1fr));
-    /* Ajuste da grid */
-    /* Ajuste da grid */
     margin-right: 10px;
-    /* Espaço entre a grid e o botão */
-    /* A grid vai crescer para ocupar o espaço restante */
+
 }
 
 .thumbnail {
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
     width: 100%;
     /* A largura da imagem será a largura da banda */
     height: 100%;
     /* A altura da imagem será 100% da altura da banda */
     object-fit: cover;
-    cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.thumbnail:hover {
-    transform: scale(1.1);
-}
 
 .hidden {
     display: none;
@@ -201,7 +196,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     /* Escurecimento da tela */
     display: flex;
     justify-content: center;

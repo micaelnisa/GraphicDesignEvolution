@@ -87,6 +87,39 @@
                 buttonContainer.style.top = `${draggable.offsetTop}px`;
             }
         });
+
+        document.querySelectorAll('.grid .cell.expanded').forEach(cell => {
+    const image = cell.querySelector('img');  // Encontra a imagem dentro da célula
+
+    image.addEventListener('mousedown', function(e) {
+        if (this.closest('.cell').classList.contains('expanded')) {
+            let startX = e.clientX;
+            let startY = e.clientY;
+
+            const initialPosition = {
+                x: this.offsetLeft,
+                y: this.offsetTop
+            };
+
+            const onMouseMove = (moveEvent) => {
+                let deltaX = moveEvent.clientX - startX;
+                let deltaY = moveEvent.clientY - startY;
+
+                // Move a imagem conforme o movimento do mouse
+                this.style.transform = `translate(${initialPosition.x + deltaX}px, ${initialPosition.y + deltaY}px)`;
+            };
+
+            const onMouseUp = () => {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            };
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+    });
+});
+
     </script>
     <script src="imagens.js"></script>
 
