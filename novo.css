@@ -12,23 +12,28 @@ body{
 body {
     margin: 0;
     display: block;
-
+    overflow-x: auto; /* Adiciona o scroll horizontal */
+    overflow-y: hidden; /* Remove o scroll vertical */
+    width: 100vw; /* Ocupa 100% da largura da viewport */
+    height: 100vh; /* Ocupa 100% da altura da viewport */
+    overflow-x:visible; /* Scroll horizontal */
+    overflow-y: hidden; /* Sem scroll vertical */
     /*
     justify-content: center;
     align-items: center;
     min-height: 100vh;*/
 }
 
+
 .grid {
     display: grid;
-    grid-template-rows: repeat(auto-fill, minmax(27.5px,1fr)); /* Ajusta a grid para preencher a tela */
-    grid-template-columns: auto;
-    width: 100vw; /* Preenche a largura do ecrã */
-    height: 100vh; /* Preenche a altura do ecrã */
-    gap: 0; /* Remove espaços entre células */
-    grid-auto-flow: column; /* Garante que a grid flua horizontalmente */
+    grid-template-rows: repeat(auto-fill,30px); /* Cada linha terá 150px de altura */
+    grid-template-columns: repeat(auto-fill, 30px); /* Cada coluna também terá 150px */
+    gap: 0; /* Remove espaços entre as células */
+    grid-auto-flow: column; /* O fluxo será horizontal */
+    width: max-content; /* Largura total é a soma de todas as colunas */
+    height: 100vh; /* A altura total será 100% da viewport */
 }
-
 
 
 .grid .cell {
@@ -63,8 +68,8 @@ cursor: pointer;
     object-position: center; /* Ajusta o corte da imagem */
 }
 .grid .cell.expanded {
-    grid-column: span 15; /* Expande horizontalmente */
-    grid-row: span 15; /* Expande verticalmente */
+    grid-column: span 7; /* Expande horizontalmente */
+    grid-row: span 7; /* Expande verticalmente */
     z-index: 10; /* Coloca por cima de outras células */
 }
 
@@ -116,7 +121,7 @@ cursor: pointer;
 
 .draggable {
     z-index: 10;
-    width: 50px;
+    width: 100px;
     height: 50px;
     background-color: #ffffff;
     font-family: sans-serif;
@@ -134,7 +139,7 @@ cursor: pointer;
 }
 
 .button-container {
-    position: absolute;
+    position: sticky;
     top: 150px;
     left: 50px;
     background-color: white;
@@ -149,3 +154,66 @@ cursor: pointer;
 .hidden {
     display: none;
 }
+
+
+
+
+
+
+
+
+.button-4 {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+   
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+  
+  .button-4:hover {
+    background-color: #799ade;
+    text-decoration: none;
+    transition-duration: 0.1s;
+  }
+  
+  .button-4:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+  }
+  
+  .button-4:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+  }
+  
+  .button-4:focus {
+    outline: 1px transparent;
+  }
+  
+  .button-4:before {
+    display: none;
+  }
+  
+  .button-4:-webkit-details-marker {
+    display: none;
+  }
