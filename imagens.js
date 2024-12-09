@@ -60,7 +60,7 @@ async function loadImages() {
     // Após a transição, remover o elemento da tela
     setTimeout(() => {
         loadingScreen.style.display = 'none';
-    }, 3000); // O tempo deve ser igual ao da transição
+    }, 2000); // O tempo deve ser igual ao da transição
 }
 
 // Função para adicionar miniatura à div draggable
@@ -88,12 +88,14 @@ function removeThumbnail(imageId) {
 function updateDraggableVisibility() {
     const draggableDiv = document.getElementById('draggable'); // ID da div draggable
     const expandedCells = document.querySelectorAll('.cell.expanded');
+    
     if (expandedCells.length > 0) {
-        draggableDiv.style.display = 'flex'; // Mostrar a div
+        draggableDiv.classList.add('show'); // Mostrar com animação
     } else {
-        draggableDiv.style.display = 'none'; // Ocultar a div
+        draggableDiv.classList.remove('show'); // Ocultar com animação
     }
 }
+
 
 document.getElementById('showSelected').addEventListener('click', () => {
     // Atualizar o conjunto de imagens selecionadas

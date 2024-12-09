@@ -14,22 +14,14 @@ body {
 body {
     margin: 0;
     display: block;
-    overflow-x: auto;
-    /* Adiciona o scroll horizontal */
-    overflow-y: hidden;
-    /* Remove o scroll vertical */
+    
+    overflow-x:auto;
     width: 100vw;
-    /* Ocupa 100% da largura da viewport */
     height: 100vh;
-    /* Ocupa 100% da altura da viewport */
-    overflow-x: visible;
-    /* Scroll horizontal */
     overflow-y: hidden;
-    /* Sem scroll vertical */
-    /*
     justify-content: center;
     align-items: center;
-    min-height: 100vh;*/
+    min-height: 100vh;
 }
 
 
@@ -45,7 +37,7 @@ body {
 
 
 .grid .cell {
-  
+    position: relative;
     overflow: hidden;
     /* Garante que imagens não ultrapassam os limites */
     aspect-ratio: 1 / 1;
@@ -62,8 +54,6 @@ body {
     aspect-ratio: 1 / 1;
     /* Mantém proporção quadrada */
     transition: transform 0.3s ease-in-out;
-    user-select: none;
-    /* Impede a seleção de texto */
 }
 
 
@@ -79,7 +69,9 @@ body {
 /* Efeito de zoom controlado e cropping */
 .grid .cell:hover img {
     transform: scale(1.5);
-  
+    /* Aumenta o zoom */
+    object-position: center;
+    /* Ajusta o corte da imagem */
 }
 
 .grid .cell.expanded {
@@ -88,26 +80,16 @@ body {
     grid-row: span 7;
     /* Expande verticalmente */
     z-index: 10;
-  
     /* Coloca por cima de outras células */
-    object-fit: contain;
-    
-    overflow-x:auto;
-    overflow-y:auto;
-
 }
 
 .grid .cell.expanded img {
-
     object-fit: contain;
-    transform: scale(1.5);
+    transform: scale(1);
     width: 100%;
     height: 100%;
+    
 }
-
-/* Opcional: Efeito nas outras células quando uma está expandida */
-.grid .cell:not(.expanded) {}
-
 
 .modal {
     display: none;
@@ -144,7 +126,7 @@ body {
 
 #draggable {
     position: fixed;
-    display: none;
+    display: flex;
     top: 10px;
     right: 10px;
     z-index: 999;
@@ -155,19 +137,37 @@ body {
     color: white;
     width: fit-content;
     height: fit-content;
+    height: 35px;
+    justify-content:center ;
+    align-items: center;
+    opacity: 0; 
+    visibility: hidden; /* Invisível, mas ocupa espaço no fluxo */
+    transition: opacity 1s ease-out, transform 1s ease-out, visibility 0s 1s;
+    
 
+}
+#draggable.show {
+    visibility: visible; 
+    opacity: 1; 
+    transition: opacity 1s ease-out, visibility 0s 1s;
 }
 
 #thumbnailContainer {
 
     display: grid;
     grid-auto-flow: column;
-    margin: auto;
+    
     width: 100px;
     grid-template-columns: repeat(minmax(5px, 1fr));
     grid-template-rows: repeat(minmax(5px, 1fr));
     margin-right: 10px;
+    height: 30px;
+    justify-content: center;
 
+}
+#thumbnailContainer img{
+    width: 100%;
+    height: 100%;
 }
 
 .thumbnail {
@@ -206,7 +206,7 @@ body {
     z-index: 9999;
     /* Fica em cima de todo o conteúdo */
     opacity: 100%;
-    transition: opacity 3s ease-out;
+    transition: opacity 2s ease-out;
     /* Transição suave para a opacidade */
 }
 
@@ -241,12 +241,13 @@ body {
     box-sizing: border-box;
     color: #24292E;
     cursor: pointer;
+    height: 30px;
 
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 20px;
     list-style: none;
-    padding: 6px 16px;
+    padding: 6px 6px;
 
     transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
     user-select: none;
