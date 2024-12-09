@@ -92,7 +92,8 @@ body {
     /* Coloca por cima de outras células */
     object-fit: contain;
     
-  
+    overflow-x:auto;
+    overflow-y:auto;
 
 }
 
