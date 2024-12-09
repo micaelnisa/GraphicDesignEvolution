@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Satoshi-Regular', Impact;
+    font-family: 'Satoshi-Regular', sans-serif;
     
 }
 
@@ -157,6 +157,40 @@ cursor: pointer;
 
 
 
+
+
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Escurecimento da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 9999; /* Fica em cima de todo o conteúdo */
+    opacity: 100%;
+}
+
+
+
+.loadingText {
+    text-align: center;
+    opacity: 100%;
+}
+
+.loadingText h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    opacity: 100%;
+}
+
+.loadingText h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
 
 
 
