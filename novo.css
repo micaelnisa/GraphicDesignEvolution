@@ -75,6 +75,8 @@ body {
 }
 
 .grid .cell.expanded {
+    transition: transform 0.5s ease-in-out;
+
     grid-column: span 7;
     /* Expande horizontalmente */
     grid-row: span 7;
