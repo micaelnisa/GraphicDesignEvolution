@@ -86,7 +86,7 @@ body {
 }
 
 .grid .cell.expanded img {
-    object-fit: contain;
+    object-fit: cover;
     transform: scale(1);
     width: 100%;
     height: 100%;
