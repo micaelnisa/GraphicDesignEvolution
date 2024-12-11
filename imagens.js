@@ -41,6 +41,7 @@ async function loadImages() {
                         // Atualizar visibilidade da div draggable
                         updateDraggableVisibility();
                     });
+                    
 
                     found = true;
                 }

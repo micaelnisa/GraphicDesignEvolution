@@ -77,21 +77,32 @@ body {
 .grid .cell.expanded {
     transition: transform 0.5s ease-in-out;
 
-    grid-column: span 7;
+    grid-column: span 6;
     /* Expande horizontalmente */
-    grid-row: span 7;
+    grid-row: span 6;
     /* Expande verticalmente */
     z-index: 10;
     /* Coloca por cima de outras células */
 }
 
 .grid .cell.expanded img {
-    object-fit: cover;
+    object-fit: cover; 
     transform: scale(1);
     width: 100%;
     height: 100%;
-    
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                clip-path 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
 }
+
+.grid .cell.expanded img:hover {
+    object-fit:scale-down; /* Mantemos cover e simulamos a mudança */
+    transform: scale(0.98); /* Simula a redução, em vez de alterar object-fit */
+    clip-path: inset(0%); /* "Revela" toda a imagem */
+    width: 100%;
+    height: 100%;
+}
+
+
 
 .modal {
     display: none;
@@ -144,7 +155,7 @@ body {
     align-items: center;
     opacity: 0; 
     visibility: hidden; /* Invisível, mas ocupa espaço no fluxo */
-    transition: opacity 1s ease-out, transform 1s ease-out, visibility 0s 1s;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0s 0.5s;
     
 
 }
