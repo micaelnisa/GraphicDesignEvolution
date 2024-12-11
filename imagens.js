@@ -86,16 +86,18 @@ function removeThumbnail(imageId) {
 }
 
 // Função para atualizar a visibilidade da div draggable
+// Função para atualizar a visibilidade da div draggable
 function updateDraggableVisibility() {
-    const draggableDiv = document.getElementById('draggable'); // ID da div draggable
+    const draggableDiv = document.getElementById('draggable');
     const expandedCells = document.querySelectorAll('.cell.expanded');
     
     if (expandedCells.length > 0) {
-        draggableDiv.classList.add('show'); // Mostrar com animação
+        draggableDiv.classList.add('show'); // Mostra a div draggable
     } else {
-        draggableDiv.classList.remove('show'); // Ocultar com animação
+        draggableDiv.classList.remove('show'); // Oculta a div draggable
     }
 }
+
 
 
 document.getElementById('showSelected').addEventListener('click', () => {
@@ -119,12 +121,11 @@ document.getElementById('showSelected').addEventListener('click', () => {
     const thumbnailContainer = document.getElementById('thumbnailContainer');
     thumbnailContainer.innerHTML = ''; // Remove todas as miniaturas da div draggable
 
-    // Ocultar a div draggable
-    const draggableDiv = document.getElementById('draggable');
-    draggableDiv.style.display = 'none';
-
     // Limpar o conjunto de imagens selecionadas
     selectedImages.clear();
+
+    // Atualizar a visibilidade da div draggable
+    updateDraggableVisibility(); // Chamada após o reset para garantir que a visibilidade seja ajustada corretamente
 
     // Redirecionar para a nova página com os IDs no URL
     if (selectedArray.length > 0) {
@@ -134,6 +135,20 @@ document.getElementById('showSelected').addEventListener('click', () => {
         alert('Não podes ver o mapa se não selecionaste nenhuma imagem');
     }
 });
+
+function updateDraggableVisibility() {
+    const draggableDiv = document.getElementById('draggable');
+    const expandedCells = document.querySelectorAll('.cell.expanded');
+    
+    if (expandedCells.length > 0) {
+        // Se houver células expandidas, mostrar a div draggable
+        draggableDiv.classList.add('show');
+    } else {
+        // Caso contrário, ocultar a div draggable
+        draggableDiv.classList.remove('show');
+    }
+}
+
 
 loadImages();
 
